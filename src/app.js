@@ -1,27 +1,22 @@
-const express = require('express');
-const { Sequelize } = require('sequelize');
+const express = require("express");
+const sequelize = require("./database/db");
+const Project = require("./models/Project");
+const Task = require("./models/Task");
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Configurar Sequelize
-const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-  host: process.env.POSTGRES_HOST,
-  dialect: 'postgres',
-  port: process.env.POSTGRES_PORT,
-});
-
-app.get('/', async (req, res) => {
+const startServer = async () => {
   try {
-    await sequelize.authenticate();
-    const [results, metadata] = await sequelize.query('SELECT NOW()');
-    res.send(results[0]);
-  } catch (err) {
-    console.error(err);
-    res.send('Error');
-  }
-});
+    await sequelize.sync({ force: true });
+    console.log("Successfully connected to the database.");
 
-app.listen(port, () => {
-  console.log(`Server is runing on port: ${port}.`);
-});
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}.`);
+    });
+  } catch (error) {
+    console.error("Failed to connect to the database:", error.message);
+  }
+};
+
+startServer();
