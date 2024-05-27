@@ -1,0 +1,28 @@
+{
+  "name": "super-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SFCC5555/super-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SFCC5555/super-test/issues"
+  },
+  "homepage": "https://github.com/SFCC5555/super-test#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.1",
+    "sequelize": "^6.6.5",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3"
+  }
+}
